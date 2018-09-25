@@ -183,9 +183,54 @@ public class AVL {
             balanceTree(position);
         }
     }
-    public void remove() {
+    public void remove(int val) {
 
+        Node node = search(val);
+        remove(node);
     }
+
+    public Node successor(Node node) {
+        Node successor = node.right;
+        while (successor.left != null) {
+            successor = successor.left;
+        }
+        return successor;
+    }
+    private void remove(Node node) {
+        if (node.left == null && node.right == null) {
+            Node parent = node.parent;
+            if (parent == null) //根节点
+                root = null;
+            else
+                balanceRemoveNode(node, parent);
+        } else if (node.left != null && node.right != null) {
+            Node successor = successor(node);
+            node.val = successor.val;
+            Node parent = successor.parent;
+            balanceRemoveNode(successor, parent); //因为是后继所以一定有parent
+        } else {
+            Node parent = node.parent;
+            Node replace = node.left == null? node.left : node.right;
+            if (parent.left == node) {
+                parent.left = replace;
+            } else {
+                parent.right = replace;
+            }
+            replace.parent = parent;
+            balanceTree(parent);
+        }
+    }
+
+    private void balanceRemoveNode(Node successor, Node parent) {
+        if (parent.left == successor) {
+            parent.left = null;
+            balanceTree(parent);
+        } else {
+            parent.right = null;
+            balanceTree(parent);
+        }
+    }
+
     public Node search(int val) {
         Node n = root;
         if (root == null) {
@@ -199,7 +244,6 @@ public class AVL {
             else
                 return n;
         }
-
         return null;
     }
 
@@ -211,6 +255,8 @@ public class AVL {
         avl.insert(3);
         avl.insert(5);
         avl.insert(6);
+        avl.insert(7);
+        avl.remove(4);
         Node search = avl.search(5);
         System.out.println(1);
     }
