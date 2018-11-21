@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Test {
     public static void main(String[] args) {
-        int nums = 100000;
+        int nums = 10000000;
         int a[] = new int[nums];
         int b[] = new int[nums];
         int c[] = new int[nums];
@@ -50,21 +50,29 @@ public class Test {
 
         System.arraycopy(a, 0, c, 0, a.length);
         beg = System.currentTimeMillis();
-        InsertSort.insertSort(c);
-        System.out.println("\nInsertSort" + (System.currentTimeMillis() - beg)); //耗时
+        HeapSort.heapSort(c);
+        System.out.println("\nHeapSort" + (System.currentTimeMillis() - beg)); //耗时
         validData(b, c);
 
-        System.arraycopy(a, 0, c, 0, a.length);
-        beg = System.currentTimeMillis();
-        SelectionSort.selectionSort(c);
-        System.out.println("\nSelectionSort" + (System.currentTimeMillis() - beg)); //耗时
-        validData(b, c);
+//        System.arraycopy(a, 0, c, 0, a.length);
+//        beg = System.currentTimeMillis();
+//        InsertSort.insertSort(c);
+//        System.out.println("\nInsertSort" + (System.currentTimeMillis() - beg)); //耗时
+//        validData(b, c);
+//
+//        System.arraycopy(a, 0, c, 0, a.length);
+//        beg = System.currentTimeMillis();
+//        SelectionSort.selectionSort(c);
+//        System.out.println("\nSelectionSort" + (System.currentTimeMillis() - beg)); //耗时
+//        validData(b, c);
+//
+//        System.arraycopy(a, 0, c, 0, a.length);
+//        beg = System.currentTimeMillis();
+//        BubbleSort.bubbleSort(c);
+//        System.out.println("\nBubbleSort" + (System.currentTimeMillis() - beg)); //耗时
+//        validData(b, c);
 
-        System.arraycopy(a, 0, c, 0, a.length);
-        beg = System.currentTimeMillis();
-        BubbleSort.bubbleSort(c);
-        System.out.println("\nBubbleSort" + (System.currentTimeMillis() - beg)); //耗时
-        validData(b, c);
+
 
     }
     private static void validData(int[] a, int[] b) {
